@@ -270,8 +270,19 @@ public class ElectricBillView extends JFrame implements Subscriber {
     }
 
     private double extractQuota(String rateString) {
+        if (rateString.equals("Rate1")) {
+            return 1;
+
+        } else if (rateString.equals("Rate2")) {
+            return 2;
+
+        } else if (rateString.equals("Rate3")) {
+            return 3;
+
+        } else {
+            return 0;
+        }
         // Logic to extract quota from rateString
-        return 0.0;
     }
 
     public ElectricBill getDataFromTextField() {
@@ -281,7 +292,7 @@ public class ElectricBillView extends JFrame implements Subscriber {
         Double unitPrice = null;
         Double quota = extractQuota(comboBoxElectricityRates.getSelectedItem().toString());
         String customertype = (String) comboBoxCustomersType.getSelectedItem();
-        String rate = (String) comboBoxElectricityRates.getSelectedItem();
+        String monthly = (String) comboBoxMonth.getSelectedItem();
         try {
             qty = Integer.parseInt(qtyField.getText());
             unitPrice = Double.parseDouble(unitPriceField.getText());
@@ -294,7 +305,7 @@ public class ElectricBillView extends JFrame implements Subscriber {
             return null;
         }
 
-        return new ElectricBill(id, name, customertype, rate, null, qty, unitPrice, quota);
+        return new ElectricBill(id, name, customertype, monthly, null, qty, unitPrice, quota);
     }
 
     void showVietnamFields() {
